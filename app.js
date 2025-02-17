@@ -1,6 +1,7 @@
 // console.log("server is running on port 5000");
 
 import express from "express";
+import cookieParser from "cookie-parser";
 
 import { PORT } from "./config/env.js";
 
@@ -9,7 +10,6 @@ import userRouter from "./routes/user.routes.js";
 import subscriptionRouter from "./routes/subscription.routes.js";
 import connectDB from "./database/mongodb.js";
 import errorMiddleware from "./middleware/error.middleware.js";
-import cookieParser from "cookie-parser";
 
 const app = express();
 
