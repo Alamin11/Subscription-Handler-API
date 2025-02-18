@@ -22,7 +22,6 @@ const subscriptionSchema = new mongoose.Schema(
     frequency: {
       type: String,
       enum: ["daily", "weekly", "monthly", "yearly"],
-      default: "monthly",
     },
     category: {
       type: String,
@@ -46,18 +45,18 @@ const subscriptionSchema = new mongoose.Schema(
       type: String,
       enum: ["bkash", "nagad", "rocket", "card", "cash"],
       required: [true, "Payment method is required"],
-      default: "cash",
+      trim: true,
     },
     status: {
       type: String,
-      enum: ["active", "inactive"],
+      enum: ["active", "cancelled", "expired"],
       default: "active",
     },
     startDate: {
       type: Date,
       required: [true, "Start date is required"],
       validate: {
-        validtor: (value) => value <= new Date(),
+        validator: (value) => value <= new Date(),
         message: "Start date must be less than or equal to current date",
       },
     },
